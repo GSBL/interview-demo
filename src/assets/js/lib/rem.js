@@ -5,13 +5,16 @@
         metaElem = doc.querySelector("meta[name='viewport']"),
         responsiveElem = doc.querySelector("meta[name='responsive']"),
         wdpr = ~~(win.devicePixelRatio) || 1, // 解决浏览器各种奇葩dpr
-        tid = 0;
+        tid = 0,
+        disableScale = win.disableScale || false;
 
     // 判断浏览器是否支持页面缩放
     res.isScalable = (function() {
-        if (win.noScaling) {
+        // 禁用缩放，通过配置全局变量disableScale = true
+        if (disableScale) {
             return false;
         }
+
         var isIos = win.navigator.appVersion.match(/iphone/gi),
             isAndroid = win.navigator.appVersion.match(/android/gi),
             isChrome = !!win.chrome; // 判断是不是chrome浏览器，不包括webview
@@ -95,9 +98,9 @@
             var deviceWidth = 1 == this.scale ? "device-width" : innerWidth;
             metaElem.setAttribute("content", "width=" + deviceWidth + ",initial-scale=" + this.scale + ", maximum-scale=" + this.scale + ", minimum-scale=" + this.scale + ", user-scalable=no")
         }
-        this.baseFontSize = clientWidth / 10,
-        this.baseFontSize = Math.max(this.baseFontSize, 32),
-        docElem.style.fontSize = this.baseFontSize + "px",
+        this.baseFontSize = clientWidth / 10;
+        this.baseFontSize = Math.max(this.baseFontSize, 32);
+        docElem.style.fontSize = this.baseFontSize + "px";
 
         // 设置data-dpr便于css hack
         docElem.setAttribute("data-dpr", this.dpr);
@@ -109,10 +112,10 @@
         doc.body.style.fontSize = 12 * res.dpr + "px";
     }, false);
 
-    win.addEventListener("resize", function(e) {
+    win.addEventListener("onorientationchange", function(e) {
         clearTimeout(tid);
-        if (!res.scaleLock && !win.noScaling) {
-            tid = setTimeout(res.changeScale, 100);
+        if (!res.scaleLock && !disableScale) {
+            tid = setTimeout(res.changeScale.bind(res), 100);
         }
     }, false);
 
@@ -120,7 +123,7 @@
         if (e.persisted) {
             clearTimeout(tid);
             if (!res.scaleLock) {
-                tid = setTimeout(res.changeScale, 100);
+                tid = setTimeout(res.changeScale.bind(res), 100);
             }
         }
     }, false);
