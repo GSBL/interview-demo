@@ -97,13 +97,8 @@ import slider from "../assets/js/slider.js"
                             riskLevel: "中",
                         }
                     }
-                ],
-                isVisible: false,
-                isCurrentIndex: true
-
-             }   
-        },
-        computed: {
+                ]
+            }   
         },
         mounted() {
             // debugger

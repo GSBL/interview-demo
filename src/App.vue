@@ -52,7 +52,9 @@
   export default {
     data () {
       return {
-
+        foundOptions: {
+            follow: true
+        }
       }
     },
     components: {
