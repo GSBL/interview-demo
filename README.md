@@ -2,18 +2,13 @@
 
 > a interview-demo page
 
-## Core Tech
+## introduction
+本项目是之前面试的时候遇到的一道题，进来开始学习`webpack`/`vue`/`ES6`，所以重新实现了一下。
+主要组件包括展示基金内容的`fund`组件，抽奖`lottery`组件。
+遇到`rotate`属性在低端设备上出现锯齿的现象，解决办法如下：
 ``` bash
-webpack
-
-ES6
-
-Vue
-
 -webkit-backface-visibility:hidden;
 backface-visibility:hidden;
-
-
 ```
 
 ## Build Setup
