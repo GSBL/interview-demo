@@ -1,8 +1,8 @@
 <template>
 	  <section class="lottery-section">
         <div class="lottery-top">
-            <h3>呼朋唤友抢iPhone 6s</h3>
-            <p>金条免费抽</p>
+            <slot name="lottery-top">
+            </slot>
         </div>
         <div class="lottery-content">
             <div class="lottery-item">

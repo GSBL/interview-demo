@@ -4,62 +4,40 @@
     <img class="logo" src="./assets/img/logo.png" alt="理財通"/>
     </header>
     <div class="content">
-        <m-found></m-found>
-        <m-lottery></m-lottery>
+        <m-fund :fund-options="fundOptions">
+            <h3 slot="fund-top">理财狂欢</h3>
+            <p slot="fund-top">高收益产品限量抢</p>
+            去看看
+        </m-fund>
+        <m-lottery>
+            <h3 slot="lottery-top">呼朋唤友抢iPhone 6s</h3>
+            <p slot="lottery-top">金条免费抽</p>              
+        </m-lottery>
     </div>
     <footer>
-      <div class="intro">
-          <h3 class="intro-title">
-              <span>理财通&nbsp;&nbsp;|&nbsp;&nbsp;腾讯官方理财平台</span>
-          </h3>
-          <ul class="product-intro">
-              <li>
-                  <div class="profit">
-                  <i></i>
-                  </div>
-                  <div class="detail">
-                      <p class="detail-abstract">稳健收益</p>
-                      <p>理财通已为1000万用户带来超过30亿收益</p>
-                  </div>
-              </li>
-              <li>
-                  <div class="safe">
-                  <i></i>
-                  </div>
-                  <div class="detail">
-                      <p class="detail-abstract">安全保障</p>
-                      <p>首创资金安全卡，腾讯安全专家为你保驾护航</p>
-                  </div>
-              </li>
-              <li>
-                  <div class="flexible">
-                  <i></i>
-                  </div>
-                  <div class="detail">
-                      <p class="detail-abstract">灵活存取</p>
-                      <p>资金随时存取，微信每日看收益</p>
-                  </div>
-              </li>
-          </ul>
-      </div>
+     <m-intro>
+        <p slot="income">理财通已为1100万用户带来超过30亿收益</p>
+     </m-intro>
     </footer>
   </div>
 </template>
 
 <script>
-  import found from './components/found.vue'
+  import fund from './components/fund.vue'
   import lottery from './components/lottery.vue'
+  import intro from './components/intro.vue'
   export default {
     data () {
       return {
-        foundOptions: {
+        fundOptions: {
             follow: true
         }
       }
     },
     components: {
-      'm-found':found,
-      'm-lottery':lottery
+      'm-fund':fund,
+      'm-lottery':lottery,
+      'm-intro': intro
     }
   }
 </script>

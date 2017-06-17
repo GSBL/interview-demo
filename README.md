@@ -10,6 +10,10 @@ ES6
 
 Vue
 
+-webkit-backface-visibility:hidden;
+backface-visibility:hidden;
+
+
 ```
 
 ## Build Setup
