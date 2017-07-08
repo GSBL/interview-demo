@@ -9,6 +9,7 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
+    "fs-extra": "^3.0.1",
     "vue": "^2.3.3"
   },
   "devDependencies": {
@@ -21,6 +22,7 @@
     "extract-text-webpack-plugin": "^2.1.2",
     "file-loader": "^0.9.0",
     "html-loader": "^0.4.5",
+    "html-res-webpack-plugin": "^3.0.2",
     "html-webpack-plugin": "^2.28.0",
     "image-webpack-loader": "^3.3.1",
     "imagemin-webpack-plugin": "^1.4.4",

@@ -2,6 +2,7 @@ var path = require('path')
 var webpack = require('webpack')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+// const HtmlResWebpackPlugin = require('html-res-webpack-plugin')
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
 const WebpackMd5Hash = require('webpack-md5-hash')
 const ImageminPlugin = require('imagemin-webpack-plugin').default
@@ -13,7 +14,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, './dist'),
-    publicPath: './',
+    publicPath: '../',
     filename: 'js/[name]_[hash].js',
     chunkFilename: 'js/[name]_[chunkhash].js'
   },
@@ -45,17 +46,6 @@ module.exports = {
         test: /\.(gif|png|jpe?g|svg)$/i,
         loaders: [
           'file-loader?name=img/[name]_[hash].[ext]'
-          // {
-          //   loader: 'image-webpack-loader',
-          //   query: {
-          //     progressive: true,
-          //     interlaced: false,
-          //     pngquant: {
-          //       quality: '65-90',
-          //       speed: 4
-          //     }
-          //   }
-          // }
         ]
       },
       {
@@ -76,11 +66,10 @@ module.exports = {
     new CleanWebpackPlugin('./dist/'),
     new WebpackMd5Hash(),
     new webpack.NoEmitOnErrorsPlugin(),
+    new ExtractTextPlugin('style/index_[chunkhash].css'),
     new HtmlWebpackPlugin({
-      title: 'interview-demo',
       template: './src/index.html'
     }),
-    new ExtractTextPlugin('sytle/main_[chunkhash].css'),
     new  webpack.optimize.CommonsChunkPlugin({
       name: 'lib',
       filename:'js/lib_[hash].js'
@@ -98,7 +87,7 @@ module.exports = {
   ],
   devServer: {
     historyApiFallback: true,
-    noInfo: true,
+    // noInfo: true,
     publicPath: "/"
   },
   performance: {
