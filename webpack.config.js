@@ -14,7 +14,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, './dist'),
-    publicPath: '../',
+    publicPath: './',
     filename: 'js/[name]_[hash].js',
     chunkFilename: 'js/[name]_[chunkhash].js'
   },
@@ -66,7 +66,7 @@ module.exports = {
     new CleanWebpackPlugin('./dist/'),
     new WebpackMd5Hash(),
     new webpack.NoEmitOnErrorsPlugin(),
-    new ExtractTextPlugin('style/index_[chunkhash].css'),
+    new ExtractTextPlugin('index_[chunkhash].css'),
     new HtmlWebpackPlugin({
       template: './src/index.html'
     }),
