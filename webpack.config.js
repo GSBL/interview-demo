@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
 const WebpackMd5Hash = require('webpack-md5-hash')
 const ImageminPlugin = require('imagemin-webpack-plugin').default
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   entry: {
@@ -45,7 +46,18 @@ module.exports = {
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
         loaders: [
-          'file-loader?name=img/[name]_[hash].[ext]'
+          'file-loader?name=img/[name]_[hash].[ext]',
+          // 'url-loader'
+          // {
+          //   loader: 'img-loader',
+          //   query: {
+          //     progressive: true,
+          //     pngquant: {
+          //       floyd: .5,
+          //       speed: 4
+          //     }
+          //   }
+          // }
         ]
       },
       {
@@ -73,17 +85,20 @@ module.exports = {
     new  webpack.optimize.CommonsChunkPlugin({
       name: 'lib',
       filename:'js/lib_[hash].js'
-    }),
-    new ImageminPlugin({
-      test: 'src/assets/img/**',
-      disable: process.env.NODE_ENV !== 'production', // Disable during development 
-      pngquant: {
-        quality: '95-100'
-      },
-      optipng: {
-        optimizationLevel: 9
-      }
     })
+    //  new CopyWebpackPlugin([{
+    //   from: 'src/assets/img/**'
+    // }]),
+    // new ImageminPlugin({
+    //   test: /\.(jpe?g|png|gif|svg)$/i,
+    //   disable: process.env.NODE_ENV !== 'production', // Disable during development 
+    //   pngquant: {
+    //     quality: '95-100'
+    //   },
+    //   optipng: {
+    //     optimizationLevel: 9
+    //   }
+    // })
   ],
   devServer: {
     historyApiFallback: true,
