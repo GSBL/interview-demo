@@ -275,6 +275,7 @@
 					background-color: #ff7654;
 					.px2rem(border-radius,114);
 					box-shadow: inset 0 -8px 0 #ff5035,0 4px 0 #ffd6c9;
+					-webkit-animation:click .5s ease infinite both;
 					animation:click .5s ease infinite both;
 					position: absolute;
 					top: 50%;
@@ -376,9 +377,12 @@
 					.px2rem(border-radius,10);
 				}
 				li:nth-child(odd) {
+					-webkit-animation: spot .8s linear infinite .4s both;
 					animation: spot .8s linear infinite .4s both;
 				}
 				li:nth-child(even) {
+					-webkit-animation: spot .8s linear infinite both;
+
 					animation: spot .8s linear infinite both;
 				}
 			}
